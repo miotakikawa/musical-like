@@ -1,13 +1,35 @@
 Rails.application.routes.draw do
+
+  root 'user/homes#top'
+
   namespace :admin do
-    get 'musicals/index'
-    get 'musicals/show'
-    get 'musicals/new'
-    get 'musicals/edit'
+     resources :musicals, only: [:new, :index, :create, :edit, :update, :show]
   end
+
   devise_for :admins, controllers: {
-  sessions: 'admins/sessions'
+   sessions:      'admins/sessions',
+   passwords:     'admins/passwords',
+   registrations: 'admins/registrations'
   }
+
   devise_for :users
+
+
+  namespace :user do
+     resources :musicals, only: [:new, :index, :create, :edit, :update, :show]
+  end
+
+  namespace :user do
+     resources :categories, only: [:new, :index, :create, :edit]
+  end
+
+  namespace :user do
+     resources :reviews, only: [:new, :index, :create, :edit, :update, :show, :delete]
+  end
+
+  namespace :admin do
+     resources :categories, only: [:index, :create, :edit, :update]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
