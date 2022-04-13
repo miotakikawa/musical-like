@@ -1,2 +1,31 @@
-<h1>Admin::Musicals#show</h1>
-<p>Find me in app/views/admin/musicals/show.html.erb</p>
+<div class="container">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>商品詳細</strong>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-12 offset-md-2">
+   <h3><%= @musical.title %></h3>
+   <br>
+   <br>
+  <div class="col-md-6 offset-md-2">
+    <%= attachment_image_tag @musical, :image, :fill, 300, 300, format: 'jpeg' %>
+  </div>
+   <br>
+   <br>
+  <div class="col-md-8">
+  <table width="50%" class="table table-borderless">
+  <tr>
+   <td>あらすじ</td>
+   <td><%= @musical.introduction %></td>
+  </tr>
+  </tr>
+  </table>
+  <div class="text-center">
+    <span><%= link_to "編集する", edit_admin_musical_path(@musical), class:"btn btn-success" %></span>
+   </div>
+
+  </div>
+ </div>
+</div>

@@ -1,4 +1,5 @@
 class Musical < ApplicationRecord
-  has_many_attached :reviews
-  has_many_attached :genres
+  has_many :reviews
+  has_many :categories
+  attachment :image
 end

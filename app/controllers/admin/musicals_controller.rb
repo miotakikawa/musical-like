@@ -8,7 +8,7 @@ class Admin::MusicalsController < ApplicationController
   end
 
   def create
-   @musical=Musical.new(item_params)
+   @musical=Musical.new(musical_params)
    if @musical.save
     redirect_to admin_musical_path(@musical.id)
    else
@@ -25,13 +25,13 @@ class Admin::MusicalsController < ApplicationController
   end
 
   def update
-   @musical = Musicak.find(params[:id])
+   @musical = Musical.find(params[:id])
    @musical.update(musical_params)
    redirect_to admin_musicals_path
   end
 
   private
   def musical_params
-    params.require(:musical).permit(:name, :image, :introduction)
+    params.require(:musical).permit(:title, :image, :introduction)
   end
 end

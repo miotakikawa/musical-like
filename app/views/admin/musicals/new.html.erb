@@ -6,7 +6,7 @@
 
 <div class="row">
  <div class="col-md-6 offset-md-3">
-<%= form_with model: @musicals, url: user_musicals_path, local:true do |f| %>
+<%= form_with model: @musical, url: admin_musicals_path, local:true do |f| %>
 <table width="50%" class="table table-borderless">
  <tbody>
   <tr>
@@ -15,11 +15,11 @@
   </tr>
   <tr>
    <td>作品名</td>
-   <td><%= f.text_field :name, class: "form-control" %></td>
+   <td><%= f.text_field :title, class: "form-control" %></td>
   </tr>
   <tr>
    <td>あらすじ</td>
-   <td><%= f.text_field :introduction, class: "form-control" %></td>
+   <td><%= f.text_area :introduction, class: "form-control" %></td>
   </tr>
  </tbody>
 </table>
