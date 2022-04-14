@@ -40,6 +40,11 @@ ActiveRecord::Schema.define(version: 2022_04_12_110607) do
   end
 
   create_table "reviews", force: :cascade do |t|
+    t.float "evaluation", null: false
+    t.text "comment"
+    t.integer "category"
+    t.integer "user_id", null: false
+    t.integer "musical_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

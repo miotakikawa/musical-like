@@ -23,7 +23,7 @@
 
    <% if user_signed_in? %>
      <button type="button" class="btn btn-outline-secondary">
-      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
      </button>
     <% elsif admin_signed_in? %>
      <button type="button" class="btn btn-outline-secondary">

@@ -12,7 +12,12 @@ Rails.application.routes.draw do
    registrations: 'admins/registrations'
   }
 
-  devise_for :users
+  devise_for :users, controllers: {
+   sessions:      'users/sessions',
+   passwords:     'users/passwords',
+   registrations: 'users/registrations'
+   
+  }
 
 
   namespace :user do
