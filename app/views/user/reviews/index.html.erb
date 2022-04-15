@@ -1,0 +1,42 @@
+<div class="container">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>投稿詳細</strong>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-6 offset-md-3">
+    <table class="table">
+          <thead class="thead-light">
+            <tr>
+                <th>作品名</th>
+                <th>カテゴリー</th>
+                <th>評価</th>
+                <th>口コミ</th>
+            　</tr>
+              <% @reviews.each do |review| %>
+              <tr>
+               <td><%= review.musical.title %></td>
+               <td><%= review.category %></td>
+               <td id="star-rate-<%= @review.id %>">
+                <script>
+                $('#star-rate-<%= @review.id %>').raty({
+                  size: 36,
+                  starOff: "<%= asset_path('star-off.png') %>",
+                  starOn: "<%= asset_path('star-on.png') %>",
+                  starHalf: "<%= asset_path('star-half.png') %>",
+                  half: true,
+                  readOnly: true,
+                  score: <%= @review.evaluation %>,
+                });
+                </script>
+               </td>
+               <td><%= item.comment %></td>
+              <% end %>
+               <td><%= link_to "編集", edit_user_review_path(@review), class:"btn btn-success" %></td>
+               <td><%= link_to "消去", user_review_path(review.id), method: :delete, class:"btn btn-danger" %></td>
+              </tr>
+          </thead>
+        </table>
+  </div>
+</div>

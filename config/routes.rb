@@ -16,7 +16,7 @@ Rails.application.routes.draw do
    sessions:      'users/sessions',
    passwords:     'users/passwords',
    registrations: 'users/registrations'
-   
+
   }
 
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   namespace :user do
-     resources :reviews, only: [:new, :index, :create, :edit, :update, :show, :delete]
+     resources :reviews, only: [:new, :index, :create, :edit, :update, :show, :destroy]
   end
 
   namespace :admin do

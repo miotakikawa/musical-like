@@ -1,0 +1,47 @@
+<div class="container">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>投稿編集</strong> 
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-6 offset-md-3">
+<%= form_with model: @review, url: user_review_path(@review), local:true do |f| %>
+<table width="50%" class="table table-borderless">
+ <tbody>
+   <tr>
+     <td>作品名</td>
+     <td><%= f.select :musical_id, options_from_collection_for_select(Musical.all, :id, :title) %></td>
+    </tr>
+    <tr>
+     <td>カテゴリー</td>
+     <td><%= f.select :category,  {'感動':0, '切ない':1, 'スポーツ':2, '恋愛':3, 'ファンタジー':4, 'コメディ':5, 'ホラー':6, 'ヒューマン': 7, 'サスペンス': 8}, class: 'sample' %></td>
+    </tr>
+    <tr class="field">
+      <td><%= f.label :evaluation, "星評価" %></td>
+      <td id="star"><%= f.hidden_field :evaluation, id: :review_star %>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'review_rate[evaluation]',
+          half: true
+        });
+      </script>
+      </td>
+    </tr>
+    <tr>
+     <td>口コミ</td>
+     <td><%= f.text_area :comment, class: "form-control" %></td>
+    </tr>
+ </tbody>
+</table>
+ 
+ <div class="text-center">
+  <span><%= f.submit '変更を保存', class:"btn btn-success" %></span>
+ </div>
+<% end %>
+</div>
+</div>

@@ -1,1 +1,50 @@
-<%= @review.category %>
+<div class="container">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>投稿詳細</strong>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-6 offset-md-3">
+  <div class="col-md-8">
+  <table width="50%" class="table table-borderless">
+  <tr>
+   <td>作品名</td>
+   <td><%= @review.musical.title %></td>
+  </tr>
+  <tr>
+    <!--文字に変更できていない-->
+   <td>カテゴリー</td>
+   <td><%= @review.category %></td>
+  </tr>
+  <tr>
+    <td>評価</td>
+    <td id="star-rate-<%= @review.id %>">
+    <script>
+    $('#star-rate-<%= @review.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,
+      readOnly: true,
+      score: <%= @review.evaluation %>,
+    });
+    </script>
+  　</td>
+  </tr>
+  <tr>
+   <td>口コミ</td>
+   <td>
+     <%= @review.comment %>
+   </td>
+  </tr>
+  </table>
+  <div class="text-center">
+    <span><%= link_to "編集する", edit_user_review_path(@review), class:"btn btn-success" %></span>
+    <span><%= link_to "投稿一覧を見る", user_reviews_path, class: "btn btn-primary" %></span>
+   </div>
+
+  </div>
+ </div>
+</div>
