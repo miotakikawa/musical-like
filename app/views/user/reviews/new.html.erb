@@ -15,7 +15,7 @@
     </tr>
     <tr>
      <td>カテゴリー</td>
-     <td><%= f.select :category,  {'感動':0, '切ない':1, 'スポーツ':2, '恋愛':3, 'ファンタジー':4, 'コメディ':5, 'ホラー':6, 'ヒューマン': 7, 'サスペンス': 8}, class: 'sample', :include_blank => "カテゴリを選択してください" %></td>
+     <td><%= f.collection_select :category_id, Category.all, :id, :name, :include_blank => "カテゴリを選択してください" %></td>
     </tr>
     <tr class="field">
       <td><%= f.label :evaluation, "星評価" %></td>

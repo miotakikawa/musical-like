@@ -1,0 +1,29 @@
+<div class="row">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>カテゴリー 一覧・追加</strong>
+</div>
+</div>
+
+<div class="row">
+<%= form_with model: @category, url: admin_categories_path, local:true do |f| %>
+ <span>ジャンル名</span>
+ <span><%= f.text_field :name %></span>
+ <span><%= f.submit '新規登録', class:"btn btn-success" %></span>
+<% end %>
+</div>
+<br><br>
+
+<div class="row">
+ <div class="col-5">
+    <table class="table">
+          <thead class="thead-light">
+              <th>カテゴリー</th>
+              <% @categories.each do |category| %>
+              <tr>
+              <td><%= category.name %></td>
+              </tr>
+              <% end %>
+          </thead>
+        </table>
+ </div>
+</div>

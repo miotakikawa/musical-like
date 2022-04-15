@@ -14,11 +14,11 @@ class User::ReviewsController < ApplicationController
       render :new
     end
   end
-　
-　def index
-　  @reviews = Review.all
-　end
-　
+
+  def index
+    @reviews = Review.all
+  end
+
   def show
     @review = Review.find(params[:id])
   end
@@ -34,7 +34,9 @@ class User::ReviewsController < ApplicationController
 
   def update
     @review = Review.find(params[:id])
-    if@review.update(review_params)
+    @review.user_id=current_user.id
+    @review.evaluation = params['review_rate']['evaluation']
+    if @review.update(review_params)
      redirect_to user_review_path(@review.id), notice:"You have created book successfully."
     else
       render :edit
@@ -44,12 +46,12 @@ class User::ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    redirect_to books_path
+    redirect_to user_reviews_path
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:comment, :evaluation, :musical_id, :category)
+    params.require(:review).permit(:comment, :evaluation, :musical_id, :category_id)
   end
 end

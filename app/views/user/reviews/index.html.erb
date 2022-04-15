@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
- <div class="col-md-6 offset-md-3">
+ <div class="col-md-11 offset-md-1">
     <table class="table">
           <thead class="thead-light">
             <tr>
@@ -13,28 +13,29 @@
                 <th>カテゴリー</th>
                 <th>評価</th>
                 <th>口コミ</th>
-            　</tr>
+              </tr>
               <% @reviews.each do |review| %>
               <tr>
                <td><%= review.musical.title %></td>
-               <td><%= review.category %></td>
-               <td id="star-rate-<%= @review.id %>">
+               <td><%= review.category.name %></td>
+               <td id="star-rate-<%= review.id %>">
                 <script>
-                $('#star-rate-<%= @review.id %>').raty({
+                $('#star-rate-<%= review.id %>').raty({
                   size: 36,
                   starOff: "<%= asset_path('star-off.png') %>",
                   starOn: "<%= asset_path('star-on.png') %>",
                   starHalf: "<%= asset_path('star-half.png') %>",
                   half: true,
                   readOnly: true,
-                  score: <%= @review.evaluation %>,
+                  score: <%= review.evaluation %>,
                 });
                 </script>
                </td>
-               <td><%= item.comment %></td>
-              <% end %>
-               <td><%= link_to "編集", edit_user_review_path(@review), class:"btn btn-success" %></td>
+               <td><%= review.comment %></td>
+
+               <td><%= link_to "編集", edit_user_review_path(review.id), class:"btn btn-success" %></td>
                <td><%= link_to "消去", user_review_path(review.id), method: :delete, class:"btn btn-danger" %></td>
+               <% end %>
               </tr>
           </thead>
         </table>

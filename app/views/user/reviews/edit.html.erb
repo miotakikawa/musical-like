@@ -1,6 +1,6 @@
 <div class="container">
 <div class="alert alert-dark col-5 d-flex" role="alert">
-    <strong>投稿編集</strong> 
+    <strong>投稿編集</strong>
 </div>
 </div>
 
@@ -15,7 +15,7 @@
     </tr>
     <tr>
      <td>カテゴリー</td>
-     <td><%= f.select :category,  {'感動':0, '切ない':1, 'スポーツ':2, '恋愛':3, 'ファンタジー':4, 'コメディ':5, 'ホラー':6, 'ヒューマン': 7, 'サスペンス': 8}, class: 'sample' %></td>
+     <td><%= f.select :category_id,  Category.all, :id, :name, class: 'sample' %></td>
     </tr>
     <tr class="field">
       <td><%= f.label :evaluation, "星評価" %></td>
@@ -38,7 +38,7 @@
     </tr>
  </tbody>
 </table>
- 
+
  <div class="text-center">
   <span><%= f.submit '変更を保存', class:"btn btn-success" %></span>
  </div>
