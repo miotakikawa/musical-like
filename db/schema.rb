@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_04_12_110607) do
     t.string "title"
     t.string "image_id"
     t.text "introduction"
-    t.integer "genre_id"
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

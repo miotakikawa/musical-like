@@ -1,0 +1,49 @@
+<div class="container">
+ <div class="row">
+  <div class="col-lg-3">
+   <table border="1" width="70%">
+    <tr>
+    <td>カテゴリー検索</td>
+    </tr>
+    <% @categories.each do |category| %>
+    <tr>
+     <td><%= link_to category.name, items_path(category_id:category.id) %></td>
+    </tr>
+    <% end %>
+   </table>
+  </div>
+
+
+  <div class="col-lg-9">
+   <h2>
+    <% if params[:category_id] %>
+    <%= @category.name %>一覧(全<%= @musical %>件)
+    <% else %>
+    商品一覧(全<%= @musivcal %>件)
+    <% end %>
+   </h2>
+
+    <%= paginate @musicals %>
+   <% @musicals.each do |musical| %>
+    <%= link_to item_path(item.id) do %>
+     <%= attachment_image_tag musical, :image, :fill, 100, 100, format: 'jpeg' %>
+    <% end %>
+    <%= link_to musical.title, musical_path(musical.id) %>
+    <%= musical.review.id %>
+     <script>
+      $('#star-rate-<%= musical.review.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,
+      readOnly: true,
+      score: <%= musical.review.evaluation %>,
+      });
+      </script>
+   <% end %>
+
+
+  </div>
+ </div>
+</div>
