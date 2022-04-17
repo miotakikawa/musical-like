@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
 
   namespace :user do
-     resources :musicals, only: [:new, :index, :create, :edit, :update, :show]
+     resources :musicals, only: [:index, :create, :edit, :update, :show]
   end
 
   namespace :user do

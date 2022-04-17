@@ -2,6 +2,7 @@ class User::ReviewsController < ApplicationController
   def new
     @review= Review.new
     @musicals = Musical.all
+    @categories = Category.all
   end
 
   def create
@@ -16,7 +17,7 @@ class User::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.all
+    @review = current_user.reviews
   end
 
   def show
@@ -24,6 +25,7 @@ class User::ReviewsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     @review = Review.find(params[:id])
     if @review.user == current_user
       render "edit"
@@ -35,7 +37,6 @@ class User::ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.user_id=current_user.id
-    @review.evaluation = params['review_rate']['evaluation']
     if @review.update(review_params)
      redirect_to user_review_path(@review.id), notice:"You have created book successfully."
     else

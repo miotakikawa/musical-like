@@ -15,7 +15,7 @@
     </tr>
     <tr>
      <td>カテゴリー</td>
-     <td><%= f.select :category_id,  Category.all, :id, :name, class: 'sample' %></td>
+     <td><%= f.select :category_id, @categories.map{ |c| [c.name, c.id] }, class: 'sample' %></td>
     </tr>
     <tr class="field">
       <td><%= f.label :evaluation, "星評価" %></td>
@@ -26,14 +26,14 @@
           starOff:  '<%= asset_path('star-off.png') %>',
           starOn : '<%= asset_path('star-on.png') %>',
           starHalf: '<%= asset_path('star-half.png') %>',
-          scoreName: 'review_rate[evaluation]',
+          scoreName: 'review[evaluation]',
           half: true
         });
       </script>
       </td>
     </tr>
     <tr>
-     <td>口コミ</td>
+     <td>レビュー</td>
      <td><%= f.text_area :comment, class: "form-control" %></td>
     </tr>
  </tbody>

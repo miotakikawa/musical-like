@@ -1,0 +1,53 @@
+<div class="container">
+<div class="alert alert-dark col-5 d-flex" role="alert">
+    <strong>作品別レビュー</strong>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-12 offset-md-2">
+   <h3><%= @musical.title %></h3>
+   <br>
+   <br>
+  <div class="col-md-6 offset-md-2">
+    <%= attachment_image_tag @musical, :image, :fill, 300, 300, format: 'jpeg' %>
+  </div>
+   <br>
+   <br>
+  <div class="col-md-8">
+  <table width="50%" class="table table-borderless">
+  <tr>
+   <td>あらすじ</td>
+   <td><%= @musical.introduction %></td>
+  </tr>
+
+  <%= @review.each do |review| %>
+    <table>
+    <td><%= review.user.name %></td>
+    <td>評価</td>
+    <td id="star-rate-<%= review.id %>">
+    <script>
+    $('#star-rate-<%= review.id %>').raty({
+      size: 36,
+      starOff: "<%= asset_path('star-off.png') %>",
+      starOn: "<%= asset_path('star-on.png') %>",
+      starHalf: "<%= asset_path('star-half.png') %>",
+      half: true,
+      readOnly: true,
+      score: <%= review.evaluation %>,
+    });
+    </script>
+    </td>
+    <tr>
+     <td>レビュー</td>
+     <td>
+       <%= review.comment %>
+     </td>
+    </tr>
+  </table>
+  <% end %>
+
+
+  </div>
+ </div>
+</div>

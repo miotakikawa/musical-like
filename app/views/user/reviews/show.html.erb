@@ -13,9 +13,8 @@
    <td><%= @review.musical.title %></td>
   </tr>
   <tr>
-    <!--文字に変更できていない-->
    <td>カテゴリー</td>
-   <td><%= @review.category %></td>
+   <td><%= @review.category.name %></td>
   </tr>
   <tr>
     <td>評価</td>
@@ -34,7 +33,7 @@
     </td>
   </tr>
   <tr>
-   <td>口コミ</td>
+   <td>レビュー</td>
    <td>
      <%= @review.comment %>
    </td>
