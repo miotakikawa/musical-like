@@ -17,16 +17,16 @@
   <div class="col-lg-9">
    <h2>
     <% if params[:category_id] %>
-    <%= @categories.name %>一覧(全<%= @musical %>件)
+    <%= @category.name %>一覧(全<%= @musical %>件)
     <% else %>
-    人気ランキング(全<%= @musivcal %>件)
+    人気ランキング(全<%= @musical %>件)
     <% end %>
    </h2>
 
-　<div class="container">
+  <div class="container">
     <div class="row">
    <% @musicals.each do |musical| %>
-     <div class="col-lg-4">
+      <div class="col-lg-4">
       <div><b><%= link_to musical.title, user_musical_path(musical.id), class:"link" %></b></div>
       <div>
         <%= attachment_image_tag musical, :image, :fill, 100, 100, format: 'jpeg' %>
@@ -36,9 +36,10 @@
        <% musical.reviews.each do |review| %>
          <% @average += (review.evaluation / musical.reviews.count) %>
        <% end %>
-       <div id="star-rate-<%= musical.reviews %>">
+
+       <div id="star-rate-musical-<%= musical.id %>">
          <script>
-           $('#star-rate-<%= musical.reviews %>').raty({
+           $('#star-rate-musical-<%= musical.id %>').raty({
              size: 36,
              starOff: "<%= asset_path('star-off.png') %>",
              starOn: "<%= asset_path('star-on.png') %>",
@@ -48,10 +49,12 @@
              score: <%= @average %>,
            });
          </script>
-       </div>
+       <strong>
        <%= @average %>
+       </strong>
+       </div>
       </div>
-     </div>
+      </div>
    <% end %>
    <%= paginate @musicals %>
    </div>

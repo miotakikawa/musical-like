@@ -22,8 +22,9 @@
     <div class="col-md-9">
 
    <% if user_signed_in? %>
-   <nav class="navbar navbar-light bg-white" class="text-right">
+   <nav class="navbar navbar-light bg-white" >
     <div>ようこそ、<%= current_user.name %>さん！</div>
+    <div class="navbar-right">
     <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "作品一覧", user_musicals_path %>
      </button>
@@ -33,26 +34,31 @@
      <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
      </button>
+     </div>
    </nav>
     <% elsif admin_signed_in? %>
     <nav class="navbar navbar-light bg-white">
+     <div class="navbar-right">
      <button type="button" class="btn btn-outline-secondary" class="text-right">
       <%= link_to "作品追加", new_admin_musical_path %>
      </button>
      <button type="button" class="btn btn-outline-secondary" class="text-right">
-      <%= link_to "カテゴリー追加", admin_category_path %>
+      <%= link_to "カテゴリー追加", admin_categories_path %>
      </button>
      <button type="button" class="btn btn-outline-secondary" class="text-right">
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
      </button>
+     </div>
     </nav>
     <% else %>
     <nav class="navbar navbar-light bg-white" class="text-right">
+     <div class="navbar-right">
      <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "新規登録", new_user_registration_path %>
      </button>
      <button type="button" class="btn btn-outline-secondary">
       <%= link_to "ログイン", new_user_session_path %>
+      </div>
      </button>
    </nav>
     <% end %>
