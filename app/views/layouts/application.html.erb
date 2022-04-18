@@ -22,23 +22,39 @@
     <div class="col-md-9">
 
    <% if user_signed_in? %>
-     <button type="button" class="btn btn-outline-secondary">
+   <nav class="navbar navbar-light bg-white" class="text-right">
+    <div>ようこそ、<%= current_user.name %>さん！</div>
+    <button type="button" class="btn btn-outline-secondary" >
+      <%= link_to "作品一覧", user_musicals_path %>
+     </button>
+     <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "口コミ投稿", new_user_review_path %>
      </button>
-     <button type="button" class="btn btn-outline-secondary">
+     <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
      </button>
+   </nav>
     <% elsif admin_signed_in? %>
-     <button type="button" class="btn btn-outline-secondary">
+    <nav class="navbar navbar-light bg-white">
+     <button type="button" class="btn btn-outline-secondary" class="text-right">
+      <%= link_to "作品追加", new_admin_musical_path %>
+     </button>
+     <button type="button" class="btn btn-outline-secondary" class="text-right">
+      <%= link_to "カテゴリー追加", admin_category_path %>
+     </button>
+     <button type="button" class="btn btn-outline-secondary" class="text-right">
       <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
      </button>
+    </nav>
     <% else %>
-     <button type="button" class="btn btn-outline-secondary">
+    <nav class="navbar navbar-light bg-white" class="text-right">
+     <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "新規登録", new_user_registration_path %>
      </button>
      <button type="button" class="btn btn-outline-secondary">
       <%= link_to "ログイン", new_user_session_path %>
      </button>
+   </nav>
     <% end %>
     </div>
     </div>

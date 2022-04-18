@@ -6,25 +6,26 @@
 
 <div class="row">
  <div class="col-md-12 offset-md-2">
-   <h3><%= @musical.title %></h3>
+   <h3><strong><%= @musical.title %></strong></h3>
    <br>
    <br>
   <div class="col-md-6 offset-md-2">
     <%= attachment_image_tag @musical, :image, :fill, 300, 300, format: 'jpeg' %>
   </div>
-   <br>
-   <br>
   <div class="col-md-8">
   <table width="50%" class="table table-borderless">
   <tr>
    <td>あらすじ</td>
    <td><%= @musical.introduction %></td>
   </tr>
+  <br><br><br>
 
   <%= @review.each do |review| %>
     <table>
+    <tr>
     <td><%= review.user.name %></td>
-    <td>評価</td>
+    </tr>
+    <tr>
     <td id="star-rate-<%= review.id %>">
     <script>
     $('#star-rate-<%= review.id %>').raty({
@@ -38,6 +39,7 @@
     });
     </script>
     </td>
+    </tr>
     <tr>
      <td>レビュー</td>
      <td>
@@ -45,6 +47,7 @@
      </td>
     </tr>
   </table>
+  <br>
   <% end %>
 
 

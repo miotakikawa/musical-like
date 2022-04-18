@@ -17,7 +17,7 @@ class User::ReviewsController < ApplicationController
   end
 
   def index
-    @review = current_user.reviews
+    @reviews = current_user.reviews.all      
   end
 
   def show

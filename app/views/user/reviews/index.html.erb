@@ -14,9 +14,11 @@
                 <th>評価</th>
                 <th>レビュー</th>
               </tr>
-              <% @review.each do |review| %>
+              <% @reviews.each do |review| %>
               <tr>
                <td><%= review.musical.title %></td>
+              </tr>
+              <tr>
                <td><%= review.category.name %></td>
                <td id="star-rate-<%= review.id %>">
                 <script>
@@ -32,10 +34,9 @@
                 </script>
                </td>
                <td><%= review.comment %></td>
-
                <% end %>
               </tr>
           </thead>
-        </table>
+    </table>
   </div>
 </div>

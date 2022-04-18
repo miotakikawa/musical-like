@@ -1,7 +1,9 @@
 class User::MusicalsController < ApplicationController
   def index
-    @musicals = Musical.page(params[:page]).reverse_order
+    @musicals = Musical.all.page(params[:page]).per(6)
+
     @categories = Category.all
+    @musical = @musicals.count
   end
 
   def show

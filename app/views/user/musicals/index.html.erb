@@ -1,13 +1,13 @@
 <div class="container">
  <div class="row">
   <div class="col-lg-3">
-   <table border="1" width="70%">
+   <table border="1" width="70%" >
     <tr>
-    <td>カテゴリー検索</td>
+    <td bgcolor="silver">カテゴリー検索</td>
     </tr>
     <% @categories.each do |category| %>
     <tr>
-     <td><%= link_to category.name, user_categories_path(category_id:category.id) %></td>
+     <td><%= link_to category.name, user_musicals_path(category_id:category.id), class:"link" %></td>
     </tr>
     <% end %>
    </table>
@@ -17,32 +17,45 @@
   <div class="col-lg-9">
    <h2>
     <% if params[:category_id] %>
-    <%= @category.name %>一覧(全<%= @musical %>件)
+    <%= @categories.name %>一覧(全<%= @musical %>件)
     <% else %>
-    商品一覧(全<%= @musivcal %>件)
+    人気ランキング(全<%= @musivcal %>件)
     <% end %>
    </h2>
 
-   <%= paginate @musicals %>
+　<div class="container">
+    <div class="row">
    <% @musicals.each do |musical| %>
-    <%= link_to user_musicals_path(musical.id) do %>
-     <%= attachment_image_tag musical, :image, :fill, 100, 100, format: 'jpeg' %>
-    <% end %>
-    <%= link_to musical.title, user_musicals_path(musical.id) %>
-    <% musical.reviews.id %>
-     <script>
-      $('#star-rate-<%= musical.reviews.id %>').raty({
-      size: 36,
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      half: true,
-      readOnly: true,
-      score: <%= musical.reviews.evaluation %>,
-      });
-      </script>
+     <div class="col-lg-4">
+      <div><b><%= link_to musical.title, user_musical_path(musical.id), class:"link" %></b></div>
+      <div>
+        <%= attachment_image_tag musical, :image, :fill, 100, 100, format: 'jpeg' %>
+      </div>
+      <div>
+       <% @average = 0 %>
+       <% musical.reviews.each do |review| %>
+         <% @average += (review.evaluation / musical.reviews.count) %>
+       <% end %>
+       <div id="star-rate-<%= musical.reviews %>">
+         <script>
+           $('#star-rate-<%= musical.reviews %>').raty({
+             size: 36,
+             starOff: "<%= asset_path('star-off.png') %>",
+             starOn: "<%= asset_path('star-on.png') %>",
+             starHalf: "<%= asset_path('star-half.png') %>",
+             half: true,
+             readOnly: true,
+             score: <%= @average %>,
+           });
+         </script>
+       </div>
+       <%= @average %>
+      </div>
+     </div>
    <% end %>
-
+   <%= paginate @musicals %>
+   </div>
+  </div>
 
   </div>
  </div>
