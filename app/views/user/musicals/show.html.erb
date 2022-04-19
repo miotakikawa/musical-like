@@ -9,6 +9,8 @@
    <h3><strong><%= @musical.title %></strong></h3>
    <br>
    <br>
+ </div>
+ </div>
   <div class="col-md-6 offset-md-2">
     <%= attachment_image_tag @musical, :image, :fill, 300, 300, format: 'jpeg' %>
   </div>
@@ -18,27 +20,26 @@
    <td>あらすじ</td>
    <td><%= @musical.introduction %></td>
   </tr>
+  </table>
   <br><br><br>
+  </div>
 
-  <%= @review.each do |review| %>
+  <% @reviews.each do |review| %>
     <table>
-    <tr>
-    <td><%= review.user.name %></td>
-    </tr>
-    <tr>
-    <td id="star-rate-<%= review.id %>">
-    <script>
-    $('#star-rate-<%= review.id %>').raty({
-      size: 36,
-      starOff: "<%= asset_path('star-off.png') %>",
-      starOn: "<%= asset_path('star-on.png') %>",
-      starHalf: "<%= asset_path('star-half.png') %>",
-      half: true,
-      readOnly: true,
-      score: <%= review.evaluation %>,
-    });
-    </script>
-    </td>
+    <tr><%= review.user.name %></tr>
+
+    <tr id="star-rate-<%= review.id %>">
+        <script>
+        $('#star-rate-<%= review.id %>').raty({
+          size: 36,
+          starOff: "<%= asset_path('star-off.png') %>",
+          starOn: "<%= asset_path('star-on.png') %>",
+          starHalf: "<%= asset_path('star-half.png') %>",
+          half: true,
+          readOnly: true,
+          score: <%= review.evaluation %>,
+        });
+        </script>
     </tr>
     <tr>
      <td>レビュー</td>
@@ -46,11 +47,24 @@
        <%= review.comment %>
      </td>
     </tr>
-  </table>
+    <td>
+    <% if review.favorited_by?(current_user) %>
+    <p>
+      <%= link_to user_favorite_path(review), method: :delete do %>
+        ♥<%= review.favorites.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to user_favorites_path(review), method: :post do %>
+        ♡<%= review.favorites.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
+  </td>
+    </table>
+
   <br>
 <% end %>
 
 
-  </div>
- </div>
-</div>

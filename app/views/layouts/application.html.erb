@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MusicalLike</title>
+    <title class="font">
+     Musical-Like
+    </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,7 +19,7 @@
     <div class="container px-lg-0">
     <div class="row">
     <div class="col-md-3 pull-right d-flex align-items-center">
-    <h3>LOGO</h3>
+    <h3>Musical-Like</h3>
     </div>
     <div class="col-md-9">
 
@@ -51,8 +53,7 @@
      </div>
     </nav>
     <% else %>
-    <nav class="navbar navbar-light bg-white" class="text-right">
-     <div class="navbar-right">
+    <div class="container1">
      <button type="button" class="btn btn-outline-secondary" >
       <%= link_to "新規登録", new_user_registration_path %>
      </button>
@@ -60,8 +61,8 @@
       <%= link_to "ログイン", new_user_session_path %>
       </div>
      </button>
-   </nav>
-    <% end %>
+
+   <% end %>
     </div>
     </div>
     </div>

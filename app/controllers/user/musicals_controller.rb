@@ -27,6 +27,6 @@ class User::MusicalsController < ApplicationController
 
   def show
     @musical = Musical.find(params[:id])
-    @review = @musical.reviews
+    @reviews = @musical.reviews
   end
 end
