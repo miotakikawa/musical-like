@@ -50,13 +50,13 @@
     <td>
     <% if review.favorited_by?(current_user) %>
     <p>
-      <%= link_to user_favorite_path(review), method: :delete do %>
+      <%= link_to user_review_favorites_path(review), method: :delete do %>
         ♥<%= review.favorites.count %> いいね
       <% end %>
     </p>
     <% else %>
     <p>
-      <%= link_to user_favorites_path(review), method: :post do %>
+      <%= link_to user_review_favorites_path(review), method: :post do %>
         ♡<%= review.favorites.count %> いいね
       <% end %>
     </p>

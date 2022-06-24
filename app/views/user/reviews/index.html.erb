@@ -17,8 +17,6 @@
               <% @reviews.each do |review| %>
               <tr>
                <td><%= review.musical.title %></td>
-              </tr>
-              <tr>
                <td><%= review.category.name %></td>
                <td id="star-rate-<%= review.id %>">
                 <script>
